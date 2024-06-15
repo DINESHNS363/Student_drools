@@ -1,0 +1,38 @@
+package rules
+
+import com.example.demo.StudentModel;
+
+rule "Mark is 100"
+	when 
+		studentModelObject: StudentModel(mark == 100);
+	then
+		studentModelObject.setGrade("A+");
+	end;
+	
+rule "Mark >90"
+	when 
+		studentModelObject: StudentModel(mark >= 90 && mark < 100);
+	then
+		studentModelObject.setGrade("A");
+	end;
+	
+rule "Mark >80"
+	when 
+		studentModelObject: StudentModel(mark >= 80 && mark < 90);
+	then
+		studentModelObject.setGrade("B+");
+	end;
+
+rule "Mark <80"
+	when 
+		studentModelObject: StudentModel(mark < 80 && mark >= 50);
+	then
+		studentModelObject.setGrade("B");
+	end;
+
+rule "Mark <50"
+	when 
+		studentModelObject: StudentModel(mark < 50);
+	then
+		studentModelObject.setGrade("F");
+	end;
